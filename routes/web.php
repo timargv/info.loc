@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.dashboard', ['title' => 'Test']);
+});
+
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
+
+    Route::resource('contacts', 'ContactsController');
+    Route::resource('manufacturers', 'ManufacturersController');
 });
