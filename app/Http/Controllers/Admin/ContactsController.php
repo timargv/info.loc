@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Contact;
+use App\Manufacturer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,8 +16,10 @@ class ContactsController extends Controller
      */
     public function index()
     {
+        $manufacturers = Manufacturer::pluck('title', 'id')->all();
+
         $contacts = Contact::paginate(20);
-        return view('admin.contacts.index', compact('contacts'));
+        return view('admin.contacts.index', compact('contacts', 'manufacturers'));
     }
 
     /**
@@ -26,7 +29,7 @@ class ContactsController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

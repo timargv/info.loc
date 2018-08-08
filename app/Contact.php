@@ -21,10 +21,7 @@ class Contact extends Model
 
     //-------------------------
     public function getManufacturersTitle() {
-        return($this->manufacturer != null) ? $this->manufacturer->title : 'Нет поставщика';
+        return($this->manufacturer != null) ? $this->manufacturer->title : '-';
     }
-
-
-
 
 }

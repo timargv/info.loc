@@ -1,5 +1,3 @@
-
-
 @extends('admin.layout')
 
 
@@ -18,17 +16,23 @@
         <section class="content">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Контакты</h3>
 
+                    <div class="">
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> &nbsp; Добавить</button>
+                    </div>
                     <div class="box-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                        <div class="input-group input-group-md" style="width: 450px; margin-top: 6px;">
+                            <form class="input-group input-group-md" action="{{ route('contacts.index') }}" method="GET">
+                                <input type="text" name="text" class="form-control pull-right" value="{{ request('text') }}" placeholder="Search">
 
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                            </div>
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
+                    <p></p>
                 </div>
                 <div class=" box-body table-responsive no-padding">
                     <table class="table table-hover">
@@ -37,7 +41,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <th>ID</th>
+                            <th style="padding-left: 15px;">ID</th>
                             <th>Имя</th>
                             <th>Фамилия</th>
                             <th>Компания</th>
@@ -47,7 +51,7 @@
                         </tr>
                         @foreach($contacts as $contact)
                             <tr>
-                                <td>{{ $contact->id }}</td>
+                                <td style="padding-left: 15px;">{{ $contact->id }}</td>
                                 <td>{{ $contact->name }}</td>
                                 <td>{{ $contact->surname }}</td>
                                 <td>{{ $contact->getManufacturersTitle()  }}</td>
@@ -71,13 +75,73 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-@endsection
 
-{{--$table->string('name');--}}
-{{--$table->string('surname');--}}
-{{--$table->integer('manufacturers_id')->nullable();--}}
-{{--$table->string('email')->nullable();--}}
-{{--$table->string('mobile_phone')->nullable();--}}
-{{--$table->string('office_phone')->nullable();--}}
-{{--$table->string('office_phone_dop')->nullable();--}}
-{{--$table->string('function')->nullable();--}}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Добавить Контакт</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="">
+
+                        <div class="clearfix row">
+                            <div class="col-xs-6">
+                                <label>Имя</label>
+                                <div class="input-group ">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input name="name" type="text" class="form-control" placeholder="Иван"></div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                <label>Фамилия</label>
+                                <div class="input-group ">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input name="surname" type="text" class="form-control " placeholder="Иванов"></div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="clearfix row">
+                            <div class="col-xs-6">
+                                <label>Email адрес</label>
+                                <div class="input-group ">
+                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                    <input name="email" type="text" class="form-control" placeholder="email"></div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                <label>Телефон</label>
+                                <div class="input-group ">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input name="mobile_phone" type="text" class="form-control " placeholder="+ 7 (999) 111-22-33"></div>
+                            </div>
+                        </div>
+                        <br>
+
+                        <label>Телефон</label>
+                        <div class="input-group ">
+                            <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+
+
+                            {{Form::select('manufacturers_id',
+                                $manufacturers,
+                                null,
+                                ['class' => 'form-control select2', 'style' => 'width: 100%'])
+                              }}
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary">Сохранить</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+@endsection
