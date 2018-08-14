@@ -2,6 +2,8 @@
 
 
 @section('content')
+
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -15,6 +17,7 @@
         <!-- Main content -->
         <section class="content">
             <div class="box">
+
                 <div class="box-header">
 
                     <div class="">
@@ -22,13 +25,19 @@
                     </div>
                     <div class="box-tools">
                         <div class="input-group input-group-md" style="width: 450px; margin-top: 6px;">
-                            <form class="input-group input-group-md" action="{{ route('contacts.index') }}" method="GET">
-                                <input type="text" name="text" class="form-control pull-right" value="{{ request('text') }}" placeholder="Search">
+                            <form class="input-group input-group-md" action="{{route('contacts.index')}}" method="GET">
+
+
+                                <input type="text" name="q" class="form-control pull-right" value="{{ request('q') }}" placeholder="Поиск менеджера">
 
                                 <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                  <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    @if(!empty(request('q')))
+                                        <a href="{{route('contacts.index')}}" class="btn btn-danger"><i class="fa fa-close"></i></a>
+                                    @endif
                                 </div>
                             </form>
+
 
                         </div>
                     </div>
@@ -57,9 +66,14 @@
                                 <td>{{ $contact->getManufacturersTitle()  }}</td>
                                 <td>{{ $contact->email }}</td>
                                 <td>{{ $contact->mobile_phone }}</td>
-                                <td>
-                                    <a href="#">ред.</a>
-                                    <a href="#">удалить</a>
+                                <td width="150px">
+                                    <div class="form-inline">
+                                    <a class="form-inline" href="#">ред.</a>
+
+                                    {{ Form::open(['route' => ['contacts.destroy', $contact->id], 'method' => 'delete', 'class' => 'form-group']) }}
+                                    <button onclick="return confirm('Удалить?')" class="btn btn-link">удалить</button>
+                                    {{ Form::close() }}
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -68,7 +82,7 @@
                     </table>
                 </div>
                 <div class="box-footer clearfix">
-                    {{ $contacts->links() }}
+                    {{$contacts->appends(['q' => \Illuminate\Support\Facades\Input::get('q')])->links()}}
                 </div>
             </div>
         </section>
@@ -83,10 +97,13 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Добавить Контакт</h4>
                 </div>
+                {!! Form::open(['route' => 'contacts.store']) !!}
+
                 <div class="modal-body">
 
                     <div class="">
 
+                        @include('admin.errors')
                         <div class="clearfix row">
                             <div class="col-xs-6">
                                 <label>Имя</label>
@@ -132,13 +149,14 @@
                               }}
                         </div>
 
-
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                    <button type="button" class="btn btn-primary">Сохранить</button>
+                    <button  class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button  class="btn btn-primary">Сохранить</button>
                 </div>
+                {!! Form::close() !!}
+
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->

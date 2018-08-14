@@ -20,4 +20,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
     Route::resource('contacts', 'ContactsController');
     Route::resource('manufacturers', 'ManufacturersController');
+
 });

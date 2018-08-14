@@ -25,6 +25,8 @@ class CreateContactsTable extends Migration
             $table->string('function')->nullable();
             $table->timestamps();
         });
+
+        \Illuminate\Support\Facades\DB::statement('ALTER TABLE contacts ADD FULLTEXT search(name, email)');
     }
 
     /**
