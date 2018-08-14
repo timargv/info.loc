@@ -52,11 +52,11 @@
                         <tr>
                             <th style="padding-left: 15px;">ID</th>
                             <th>Название</th>
-                            <th>Код</th>
+                            <th>Код Тора</th>
                             <th>Сайт</th>
                             <th>email</th>
                             <th>Номер</th>
-                            <th>Адрес</th>
+                            <th width="300px">Адрес</th>
                             <th></th>
                         </tr>
                         @foreach($manufacturers as $manufacturer)
@@ -64,7 +64,7 @@
                                 <td style="padding-left: 15px;">{{ $manufacturer->id }}</td>
                                 <td>{{ $manufacturer->title }}</td>
                                 <td>{{ $manufacturer->code_product }}</td>
-                                <td>{{ $manufacturer->site_link }}</td>
+                                <td><a href="{{ $manufacturer->site_link }}" target="_blank">ссылка</a> </td>
                                 <td>{{ $manufacturer->email }}</td>
                                 <td>{{ $manufacturer->number }}</td>
                                 <td>{{ $manufacturer->address }}</td>

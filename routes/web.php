@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin.dashboard', ['title' => 'Test']);
-});
+Route::get('/', function () {return view('welcome');});
+Route::get('/manufacturers', 'ManufacturersController@index')->name('manufacturers');
+Route::get('/contacts', 'ContactsController@index')->name('contacts');
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function(){
 
+    Route::get('/', function () {return view('admin.dashboard', ['title' => 'Админка']);});
     Route::resource('contacts', 'ContactsController');
     Route::resource('manufacturers', 'ManufacturersController');
 
