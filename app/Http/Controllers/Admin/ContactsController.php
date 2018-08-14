@@ -110,7 +110,7 @@ class ContactsController extends Controller
             'name'             => 'required',
             'surname'          => 'nullable',
             'email'            => 'required|email',
-            'manufacturers_id' => 'required',
+            'manufacturer_id'  => 'required',
         ]);
 
         $contact = Contact::add($request->all());
@@ -137,8 +137,11 @@ class ContactsController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+        $contact = Contact::find($id);
+        $manufacturers = Manufacturer::pluck('title', 'id')->all();
+
+        return view('admin.contacts.edit', compact('contact', 'manufacturers'));
+     }
 
     /**
      * Update the specified resource in storage.
@@ -149,7 +152,18 @@ class ContactsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name'             => 'required',
+            'surname'          => 'nullable',
+            'email'            => 'required|email',
+            'manufacturer_id' => 'required',
+        ]);
+
+        $contact = Contact::find($id);
+        $contact->edit($request->all());
+        $contact->setManufacturer($request->get('manufacturer_id'));
+        return redirect()->route('contacts.index');
+
     }
 
     /**

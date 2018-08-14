@@ -13,7 +13,7 @@ class Manufacturer extends Model
 
     use Sluggable;
 
-    protected $fillable = ['title', 'slug'];
+    protected $fillable = ['title', 'site_link', 'email', 'number', 'address', 'code_product', 'slug'];
 
     public function contact(){
         return $this->hasMany(Contact::class, 'manufacturer_id');

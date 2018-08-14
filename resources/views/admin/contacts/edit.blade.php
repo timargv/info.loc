@@ -21,7 +21,7 @@
                 <div class="box-header">
 
                 </div>
-                {{ Form::open(['route' => 'contacts.store']) }}
+                {{ Form::open(['route' => ['contacts.update', $contact->id], 'method' => 'put']) }}
 
                 <div class=" box-body ">
 
@@ -35,14 +35,14 @@
                                     <label>Имя</label>
                                     <div class="input-group ">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input name="name" type="text" class="form-control" placeholder="Иван"></div>
+                                        <input name="name" type="text" class="form-control" value="{{ $contact->name }}"></div>
                                 </div>
 
                                 <div class="col-xs-6">
                                     <label>Фамилия</label>
                                     <div class="input-group ">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input name="surname" type="text" class="form-control " placeholder="Иванов"></div>
+                                        <input name="surname" type="text" class="form-control " value="{{ $contact->surname }}"></div>
                                 </div>
                             </div>
                             <br>
@@ -51,26 +51,26 @@
                                     <label>Email адрес</label>
                                     <div class="input-group ">
                                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                        <input name="email" type="text" class="form-control" placeholder="email"></div>
+                                        <input name="email" type="text" class="form-control" value="{{ $contact->email }}"></div>
                                 </div>
 
                                 <div class="col-xs-6">
                                     <label>Телефон</label>
                                     <div class="input-group ">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input name="mobile_phone" type="text" class="form-control " placeholder="+ 7 (999) 111-22-33"></div>
+                                        <input name="mobile_phone" type="text" class="form-control " value="{{ $contact->mobile_phone }}"></div>
                                 </div>
                             </div>
                             <br>
 
-                            <label>Телефон</label>
+                            <label>Компания</label>
                             <div class="input-group ">
                                 <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
 
 
                                 {{Form::select('manufacturer_id',
                                     $manufacturers,
-                                    null,
+                                    $contact->getManufacturerID(),
                                     ['class' => 'form-control select2', 'style' => 'width: 100%'])
                                   }}
 
@@ -82,7 +82,7 @@
 
                 </div>
                 <div class="box-footer clearfix">
-                    <button  class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <a href="{{ route('contacts.index') }}"  class="btn btn-default" >Закрыть</a>
                     <button  class="btn btn-primary">Сохранить</button>
                 </div>
                 {{ Form::close() }}

@@ -21,7 +21,7 @@
                 <div class="box-header">
 
                 </div>
-                {{ Form::open(['route' => 'contacts.store']) }}
+                {{ Form::open(['route' => ['manufacturers.update', $manufacturer->id], 'method' => 'put']) }}
 
                 <div class=" box-body ">
 
@@ -31,18 +31,11 @@
 
                             @include('admin.errors')
                             <div class="clearfix row">
-                                <div class="col-xs-6">
-                                    <label>Имя</label>
+                                <div class="col-xs-12">
+                                    <label>Название</label>
                                     <div class="input-group ">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input name="name" type="text" class="form-control" placeholder="Иван"></div>
-                                </div>
-
-                                <div class="col-xs-6">
-                                    <label>Фамилия</label>
-                                    <div class="input-group ">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input name="surname" type="text" class="form-control " placeholder="Иванов"></div>
+                                        <input name="title" type="text" class="form-control" value="{{ $manufacturer->title }}"></div>
                                 </div>
                             </div>
                             <br>
@@ -51,38 +44,42 @@
                                     <label>Email адрес</label>
                                     <div class="input-group ">
                                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                        <input name="email" type="text" class="form-control" placeholder="email"></div>
+                                        <input name="email" type="text" class="form-control" value="{{ $manufacturer->email }}"></div>
                                 </div>
 
                                 <div class="col-xs-6">
                                     <label>Телефон</label>
                                     <div class="input-group ">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input name="mobile_phone" type="text" class="form-control " placeholder="+ 7 (999) 111-22-33"></div>
+                                        <input name="number" type="text" class="form-control " value="{{ $manufacturer->number }}"></div>
                                 </div>
                             </div>
                             <br>
 
-                            <label>Телефон</label>
+                            <label>Сайт</label>
                             <div class="input-group ">
                                 <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+                                <input name="site_link" type="text" class="form-control " value="{{ $manufacturer->site_link }}"></div>
+                            <br>
 
+                            <label>Код продукта</label>
+                            <div class="input-group ">
+                                <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+                                <input name="code_product" type="text" class="form-control " value="{{ $manufacturer->code_product }}"></div>
+                            <br>
 
-                                {{Form::select('manufacturer_id',
-                                    $manufacturers,
-                                    null,
-                                    ['class' => 'form-control select2', 'style' => 'width: 100%'])
-                                  }}
-
-
-                            </div>
+                            <label>Адрес</label>
+                            <div class="input-group ">
+                                <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+                                <input name="address" type="text" class="form-control " value="{{ $manufacturer->address }}"></div>
 
                         </div>
-                    </div>
+
+                        </div>
 
                 </div>
                 <div class="box-footer clearfix">
-                    <button  class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <a href="{{ route('manufacturers.index') }}"  class="btn btn-default">Закрыть</a>
                     <button  class="btn btn-primary">Сохранить</button>
                 </div>
                 {{ Form::close() }}

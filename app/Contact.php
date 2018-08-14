@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
 
-    protected $fillable = ['name', 'surname', 'email','slug', 'manufacturer_id'];
+    protected $fillable = ['name', 'surname', 'mobile_phone', 'email','slug', 'manufacturer_id'];
 
 
     public function manufacturer() {
@@ -45,6 +45,12 @@ class Contact extends Model
         if($id == null) {return;}
         $this->manufacturer_id = $id;
         $this->save();
+    }
+
+
+    public function getManufacturerID()
+    {
+        return $this->manufacturer != null ? $this->manufacturer->id : null;
     }
 
 

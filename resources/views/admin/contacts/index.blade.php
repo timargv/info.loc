@@ -68,7 +68,7 @@
                                 <td>{{ $contact->mobile_phone }}</td>
                                 <td width="150px">
                                     <div class="form-inline">
-                                    <a class="form-inline" href="#">ред.</a>
+                                    <a class="form-inline" href="{{ route('contacts.edit', $contact->id) }}">ред.</a>
 
                                     {{ Form::open(['route' => ['contacts.destroy', $contact->id], 'method' => 'delete', 'class' => 'form-group']) }}
                                     <button onclick="return confirm('Удалить?')" class="btn btn-link">удалить</button>
@@ -137,12 +137,12 @@
                         </div>
                         <br>
 
-                        <label>Телефон</label>
+                        <label>Компания</label>
                         <div class="input-group ">
                             <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
 
 
-                            {{Form::select('manufacturers_id',
+                            {{Form::select('manufacturer_id',
                                 $manufacturers,
                                 null,
                                 ['class' => 'form-control select2', 'style' => 'width: 100%'])

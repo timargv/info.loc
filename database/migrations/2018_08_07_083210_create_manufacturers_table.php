@@ -24,6 +24,8 @@ class CreateManufacturersTable extends Migration
             $table->string('address')->nullable();
             $table->timestamps();
         });
+
+        \Illuminate\Support\Facades\DB::statement('ALTER TABLE manufacturers ADD FULLTEXT search(title, code_product, email, number)');
     }
 
     /**
