@@ -141,7 +141,14 @@ class ManufacturersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate($request, [
+          'title'             => 'required',
+          'code_product'      => 'required',
+      ]);
+
+      $manufacturer = Manufacturer::find($id);
+      $manufacturer->update($request->all());
+      return redirect()->route('manufacturers.index');
     }
 
     /**
