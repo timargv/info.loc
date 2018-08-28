@@ -59,7 +59,7 @@
                             <td style="padding-left: 15px;">{{ $manufacturer->id }}</td>
                             <td>{{ $manufacturer->title }}</td>
                             <td>{{ $manufacturer->code_product }}</td>
-                            <td><a href="{{ $manufacturer->site_link }}" target="_blank">ссылка</a> </td>
+                            <td><a href=" {{ $manufacturer->site_link }}" target="_blank">ссылка</a> </td>
                             <td>{{ $manufacturer->email }}</td>
                             <td>{{ $manufacturer->number }}</td>
 

@@ -16,7 +16,7 @@ class ManufacturersController extends Controller
         $max_page = 30;
 
         if (empty($q)) {
-            $manufacturers = Manufacturer::paginate(10);
+            $manufacturers = Manufacturer::paginate();
         } else {
             $manufacturers = $this->search($q, $max_page);
         }

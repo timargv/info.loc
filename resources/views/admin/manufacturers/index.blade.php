@@ -28,7 +28,7 @@
                             <form class="input-group input-group-md" action="{{route('manufacturers.index')}}" method="GET">
 
 
-                                <input type="text" name="q" class="form-control pull-right" value="{{ request('q') }}" placeholder="Поиск менеджера">
+                                <input type="text" name="q" class="form-control pull-right" value="{{ request('q') }}" placeholder="Поиск Компании">
 
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
@@ -64,7 +64,7 @@
                                 <td style="padding-left: 15px;">{{ $manufacturer->id }}</td>
                                 <td>{{ $manufacturer->title }}</td>
                                 <td>{{ $manufacturer->code_product }}</td>
-                                <td><a href="{{ $manufacturer->site_link }}" target="_blank">ссылка</a> </td>
+                                <td><a href=" {{ $manufacturer->site_link }}" target="_blank">{{ $manufacturer->site_link }}</a> </td>
                                 <td>{{ $manufacturer->email }}</td>
                                 <td>{{ $manufacturer->number }}</td>
                                 <td>{{ $manufacturer->address }}</td>
@@ -136,7 +136,7 @@
                         <label>Сайт</label>
                         <div class="input-group ">
                             <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
-                            <input name="site_link" type="text" class="form-control " placeholder="Пример: www.atis36.ru"></div>
+                            <input name="site_link" type="text" class="form-control " placeholder="Пример: http://atis36.ru"></div>
                         <br>
 
                         <label>Код продукта</label>
