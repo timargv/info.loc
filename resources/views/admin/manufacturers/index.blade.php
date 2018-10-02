@@ -62,7 +62,11 @@
                         @foreach($manufacturers as $manufacturer)
                             <tr>
                                 <td style="padding-left: 15px;">{{ $manufacturer->id }}</td>
-                                <td>{{ $manufacturer->title }}</td>
+                                <td>{{ $manufacturer->title }} 
+                                    @if($manufacturer->comment)
+                                    <a tabindex="0" class="" role="button" data-toggle="popover" data-trigger="focus" title="Коммент" data-content="{{ $manufacturer->comment }}"><i class="fa fa-info-circle"></i></a>
+                                    @endif
+                                </td>
                                 <td>{{ $manufacturer->code_product }}</td>
                                 <td><a href=" {{ $manufacturer->site_link }}" target="_blank">{{ $manufacturer->site_link }}</a> </td>
                                 <td>{{ $manufacturer->email }}</td>

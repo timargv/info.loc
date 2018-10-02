@@ -39,6 +39,7 @@ mix.scripts([
     'resources/assets/admin/plugins/slimScroll/jquery.slimscroll.min.js',
     'resources/assets/admin/plugins/iCheck/icheck.min.js',
     'resources/assets/admin/plugins/fastclick/fastclick.js',
+    'resources/assets/admin/bootstrap/js/popper.min.js',
     'resources/assets/admin/dist/js/app.min.js',
     'resources/assets/admin/dist/js/demo.js',
     'resources/assets/admin/dist/js/scripts.js'

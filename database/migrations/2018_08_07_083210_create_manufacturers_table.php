@@ -22,6 +22,7 @@ class CreateManufacturersTable extends Migration
             $table->string('site_link')->nullable();
             $table->string('code_product')->nullable();
             $table->string('address')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
 

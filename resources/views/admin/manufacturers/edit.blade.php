@@ -73,6 +73,12 @@
                                 <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
                                 <input name="address" type="text" class="form-control " value="{{ $manufacturer->address }}"></div>
 
+                            <br>
+
+                            <label>Комментарий</label>
+                            <div class="input-group ">
+                                <span class="input-group-addon"><i class="fa fa-comment-o"></i></span>
+                                <textarea name="comment"  class="form-control">{{ $manufacturer->comment }}</textarea>
                         </div>
 
                         </div>

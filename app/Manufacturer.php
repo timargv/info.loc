@@ -13,7 +13,7 @@ class Manufacturer extends Model
 
     use Sluggable;
 
-    protected $fillable = ['title', 'site_link', 'email', 'number', 'address', 'code_product', 'slug'];
+    protected $fillable = ['title', 'site_link', 'email', 'number', 'address', 'code_product', 'comment', 'slug'];
 
     //------------------------
     public function contact(){
