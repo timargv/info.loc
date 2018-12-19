@@ -20,7 +20,7 @@ class ManufacturersController extends Controller
 
         $q = $request->input('q');
 
-        $max_page = 30;
+        $max_page = 5;
 
         if (empty($q)) {
             $manufacturers = Manufacturer::paginate(50);

@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
 
-    protected $fillable = ['name', 'surname', 'mobile_phone', 'email','slug', 'manufacturer_id'];
+    protected $fillable = ['name', 'surname', 'mobile_phone', 'email','slug', 'manufacturer_id', 'manufacturer_other'];
 
 
     public function manufacturer() {
@@ -24,7 +24,7 @@ class Contact extends Model
 
     //-------------------------
     public function getManufacturersTitle() {
-        return($this->manufacturer != null) ? $this->manufacturer->title : '-';
+        return($this->manufacturer != null) ? $this->manufacturer->title : null;
     }
 
     //-------------------------
@@ -51,6 +51,11 @@ class Contact extends Model
     public function getManufacturerID()
     {
         return $this->manufacturer != null ? $this->manufacturer->id : null;
+    }
+
+    public function getManufacturerHreaf()
+    {
+        return $this->manufacturer != null ? $this->manufacturer->site_link : null;
     }
 
 

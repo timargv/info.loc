@@ -20,7 +20,7 @@
                 <div class="text-left">
                     Поставщики
                 </div>
-                <div class="box-tools">
+                {{-- <div class="box-tools">
                     <div class="input-group input-group-md" style="max-width: 450px; margin-top: 6px;">
                         <form class="input-group input-group-md" action="{{route('manufacturers')}}" method="GET">
 
@@ -38,7 +38,7 @@
 
                     </div>
                 </div>
-                <p></p>
+                <p></p> --}}
             </div>
             <div class=" box-body table-responsive no-padding">
                 <table class="table table-hover text-left">

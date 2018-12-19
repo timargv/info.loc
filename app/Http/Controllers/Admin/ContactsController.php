@@ -82,7 +82,7 @@ class ContactsController extends Controller
         $query = array_unique($query, SORT_STRING);
         $qQeury = implode(" ", $query); //объединяет массив в строку
         // Таблица для поиска
-        $contacts = Contact::whereRaw("MATCH(name,email) AGAINST(? IN BOOLEAN MODE)", // name,email - поля, по которым нужно искать
+        $contacts = Contact::whereRaw("MATCH(name,email,manufacturer_other) AGAINST(? IN BOOLEAN MODE)", // name,email - поля, по которым нужно искать
                                         $qQeury)->paginate($count) ;
         return $contacts;
     }
@@ -107,15 +107,16 @@ class ContactsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'             => 'required',
-            'surname'          => 'nullable',
-            'email'            => 'required|email',
-            'manufacturer_id'  => 'required',
+            'name'               => 'required',
+            'surname'            => 'nullable',
+            'email'              => 'nullable|email',
+            'manufacturer_id'    => 'nullable',
+            'manufacturer_other' => 'nullable',
         ]);
 
         $contact = Contact::add($request->all());
         $contact->setManufacturer($request->get('manufacturer_id'));
-        return redirect()->route('contacts.index');
+        return redirect()->back();
     }
 
     /**
@@ -153,10 +154,11 @@ class ContactsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name'             => 'required',
-            'surname'          => 'nullable',
-            'email'            => 'required|email',
-            'manufacturer_id' => 'required',
+            'name'               => 'required',
+            'surname'            => 'nullable',
+            'email'              => 'nullable|email',
+            'manufacturer_id'    => 'nullable',
+            'manufacturer_other' => 'nullable',
         ]);
 
         $contact = Contact::find($id);

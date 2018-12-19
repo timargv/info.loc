@@ -1,5 +1,12 @@
 $(document).ready(function (){
-	$("#example1").DataTable();
+	$("#example1, #example2").DataTable({
+      'paging'      : false,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : false,
+      'autoWidth'   : false,
+    });
 	$(".select2").select2();
     //Date picker
     $('#datepicker').datepicker({

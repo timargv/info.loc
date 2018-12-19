@@ -69,16 +69,17 @@
                 </div>
             @endif
 
-                <div class="top-right links" style="z-index: 1;">
+                <div class="top-right links" style="z-index: 1;" role="tablist">
                     <a href="{{ url('/') }}">Главная</a>
                     <a href="{{ url('/admin') }}">Админ</a>
-                    <a href="{{ url('/manufacturers') }}">Поставщики</a>
-                    <a href="{{ url('/contacts') }}">Контакты</a>
+                    <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"">Поставщики</a>
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Контакты</a>
                 </div>
 
                 @yield('content')
         </div>
 
 <script src="/js/admin.js"></script>
+   
     </body>
 </html>

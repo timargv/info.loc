@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {return view('welcome');});
+Route::get('/', 'ContactsController@index')->name('contacts');
 Route::get('/manufacturers', 'ManufacturersController@index')->name('manufacturers');
 Route::get('/contacts', 'ContactsController@index')->name('contacts');
 

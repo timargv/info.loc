@@ -11,7 +11,7 @@ class ManufacturersController extends Controller
     public function index(Request $request)
     {
 
-        $q = $request->input('q');
+        $q = $request->input('s');
 
         $max_page = 30;
 
@@ -23,7 +23,7 @@ class ManufacturersController extends Controller
 
         $manufacturerCount = DB::table('manufacturers')->count();
 
-        return view('manufacturers', ['include' => 'search.table', 'manufacturers' => $manufacturers, 'manufacturerCount' => $manufacturerCount])->render();
+        return view('contact', ['include' => 'search.table', 'manufacturers' => $manufacturers, 'manufacturerCount' => $manufacturerCount])->render();
 
     }
 

@@ -63,7 +63,13 @@
                                 <td style="padding-left: 15px;">{{ $contact->id }}</td>
                                 <td>{{ $contact->name }}</td>
                                 <td>{{ $contact->surname }}</td>
-                                <td>{{ $contact->getManufacturersTitle()  }}</td>
+                                <td>
+                                    @if($contact->getManufacturerID())
+                                    <a target="_blank" href="{{ $contact->getManufacturerHreaf() }}">{{ $contact->getManufacturersTitle() }}</a>
+                                    @else
+                                    {{ $contact->manufacturer_other }}
+                                    @endif
+                                </td>
                                 <td>{{ $contact->email }}</td>
                                 <td>{{ $contact->mobile_phone }}</td>
                                 <td width="150px">

@@ -16,7 +16,7 @@ class ContactsController extends Controller
 
         $max_page = 30;
 
-        $manufacturers = Manufacturer::pluck('title', 'id')->all();
+        $manufacturers_list = Manufacturer::pluck('title', 'id')->all();
 
 
         if (empty($q)) {
@@ -27,7 +27,24 @@ class ContactsController extends Controller
 
         $contactCount = DB::table('contacts')->count();
 
-        return view('contacts', ['include' => 'search.table', 'contacts' => $contacts, 'manufacturers' => $manufacturers, 'contactCount' => $contactCount])->render();
+
+        if (empty($q)) {
+            $manufacturers = Manufacturer::paginate();
+        } else {
+            $manufacturers = $this->search($q, $max_page);
+        }
+
+        $manufacturerCount = DB::table('manufacturers')->count();
+
+
+        return view('contacts', [
+            'include' => 'search.table', 
+            'contacts' => $contacts, 
+            'manufacturers_list' => $manufacturers_list, 
+            'manufacturers' => $manufacturers, 
+            'contactCount' => $contactCount,
+            'manufacturerCount' => $manufacturerCount,
+        ])->render();
 
     }
 
@@ -74,7 +91,7 @@ class ContactsController extends Controller
         $query = array_unique($query, SORT_STRING);
         $qQeury = implode(" ", $query); //объединяет массив в строку
         // Таблица для поиска
-        $contacts = Contact::whereRaw("MATCH(name,email) AGAINST(? IN BOOLEAN MODE)", // name,email - поля, по которым нужно искать
+        $contacts = Contact::whereRaw("MATCH(name,email,manufacturer_other) AGAINST(? IN BOOLEAN MODE)", // name,email - поля, по которым нужно искать
             $qQeury)->paginate($count) ;
         return $contacts;
     }

@@ -17,6 +17,7 @@ class CreateContactsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('surname');
+            $table->string('manufacturer_other')->nullable();
             $table->integer('manufacturer_id')->nullable();
             $table->string('email')->nullable();
             $table->string('mobile_phone')->nullable();

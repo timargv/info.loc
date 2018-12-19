@@ -68,13 +68,22 @@
                                 <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
 
 
-                                {{Form::select('manufacturer_id',
+                                {{Form::select('manufacturer_id', [null=>'Компания'] + 
                                     $manufacturers,
                                     null,
                                     ['class' => 'form-control select2', 'style' => 'width: 100%'])
                                   }}
 
 
+                            </div>
+
+                            <div class="clearfix row">
+                                <div class="col-xs-12">
+                                    <label></label>
+                                    <div class="input-group ">
+                                        <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+                                        <input name="manufacturer_other" type="text" class="form-control " placeholder="Другая Компания"></div>
+                                </div>
                             </div>
 
                         </div>
